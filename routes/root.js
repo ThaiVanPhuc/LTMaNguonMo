@@ -1,7 +1,7 @@
 import express from "express";
 import HomeController from "../controllers/home_controller.mjs";
 import CvController from "../controllers/cv_controller.mjs";
-import UserController from "../controllers/user_controller";
+import UserController from "../controllers/user_controller.mjs";
 const rootRouter = express.Router();
 
 rootRouter.get("/user", UserController.index);
