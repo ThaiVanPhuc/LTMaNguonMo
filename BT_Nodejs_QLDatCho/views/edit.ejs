@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sửa Đặt Chỗ</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    input, select, button {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    input:focus, select:focus, button:focus {
+      outline: none;
+      border-color: #007BFF;
+    }
+    button {
+      background-color: #007BFF;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .btn-back {
+      display: block;
+      text-align: center;
+      margin-top: 15px;
+      color: #007BFF;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .btn-back:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Sửa Đặt Chỗ</h1>
+    <form action="/<%= booking._id %>?_method=PUT" method="POST">
+      <label for="customerName">Tên khách hàng:</label>
+      <input type="text" id="customerName" name="customerName" value="<%= booking.customerName %>" required>
+
+      <label for="date">Ngày:</label>
+      <input type="date" id="date" name="date" value="<%= booking.date ? booking.date.toISOString().split('T')[0] : '' %>" required>
+
+      <label for="time">Giờ:</label>
+      <input type="time" id="time" name="time" value="<%= booking.time ? booking.time : '' %>" required>
+
+      <label for="status">Trạng thái:</label>
+      <select id="status" name="status">
+        <option value="Pending" <%= booking.status === 'Pending' ? 'selected' : '' %>>Pending</option>
+        <option value="Confirmed" <%= booking.status === 'Confirmed' ? 'selected' : '' %>>Confirmed</option>
+        <option value="Cancelled" <%= booking.status === 'Cancelled' ? 'selected' : '' %>>Cancelled</option>
+      </select>
+
+      <button type="submit" class="btn">Cập nhật</button>
+    </form>
+    <a href="/" class="btn-back">Quay lại</a>
+  </div>
+</body>
+</html>
