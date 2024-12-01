@@ -45,7 +45,7 @@ exports.showEditBookingForm = async (req, res) => {
     if (!booking) {
       return res.status(404).send("Không tìm thấy đặt chỗ.");
     }
-    res.render("edit", { booking });
+    res.render("index", { bookings });
   } catch (error) {
     res.status(500).send("Lỗi khi tải form chỉnh sửa.");
   }
